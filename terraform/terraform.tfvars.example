@@ -1,0 +1,15 @@
+# Copy this file to terraform.tfvars and fill in your own values.
+# terraform.tfvars is gitignored — never commit real values (especially your IP) to a public repo.
+
+aws_region    = "us-east-1"
+project_name  = "capstone-static-web"
+
+# Find yours with: curl -s https://checkip.amazonaws.com
+my_ip_cidr    = "203.0.113.42/32"
+
+key_pair_name = "my-ec2-keypair"       # must already exist in this AWS region
+bucket_name   = "capstone-static-web-assets-yourname-1234"   # must be globally unique
+alert_email   = "you@example.com"
+
+instance_type       = "t2.micro"
+cpu_alarm_threshold = 70

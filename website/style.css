@@ -1,0 +1,221 @@
+:root {
+  --ink: #16211b;
+  --paper: #eef1ea;
+  --line: #b9c3b2;
+  --signal: #3c6e47;
+  --signal-dim: #7a9c82;
+  --amber: #c98a2c;
+  --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  --serif: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.55;
+}
+
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+a { color: inherit; }
+
+/* Masthead */
+
+.masthead {
+  border-bottom: 1px solid var(--line);
+  padding: 22px 0;
+}
+
+.masthead .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.mark {
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+}
+
+.masthead nav a {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  text-decoration: none;
+  margin-left: 22px;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+.masthead nav a:hover { border-bottom-color: var(--signal); }
+
+/* Hero */
+
+.hero {
+  padding: 72px 0 56px;
+  border-bottom: 1px solid var(--line);
+}
+
+.kicker {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--signal);
+  margin: 0 0 18px;
+}
+
+.hero h1 {
+  font-size: clamp(1.8rem, 3.4vw, 2.7rem);
+  font-weight: 500;
+  line-height: 1.25;
+  max-width: 18ch;
+  margin: 0 0 20px;
+}
+
+.lede {
+  max-width: 56ch;
+  font-size: 1.08rem;
+  color: #3c463f;
+  margin: 0 0 44px;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 44px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+}
+
+.meta-item { display: flex; flex-direction: column; gap: 4px; }
+
+.meta-item .num {
+  font-family: var(--mono);
+  font-size: 1.4rem;
+  color: var(--ink);
+}
+
+.meta-item .label {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: #62705f;
+}
+
+/* Route / numbered path — genuinely sequential, so numbering earns its place */
+
+.route { padding: 64px 0; border-bottom: 1px solid var(--line); }
+
+.route h2, .stack h2, .status h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 0 0 36px;
+}
+
+.path {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 28px;
+}
+
+.path li {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.step-num {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--signal);
+  border: 1px solid var(--signal-dim);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.path h3 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.path p { margin: 0; color: #3c463f; max-width: 58ch; }
+
+/* Stack grid */
+
+.stack { padding: 64px 0; border-bottom: 1px solid var(--line); }
+
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.stack-card {
+  background: var(--paper);
+  padding: 26px 28px;
+}
+
+.stack-card h3 {
+  margin: 0 0 10px;
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  color: var(--signal);
+}
+
+.stack-card p { margin: 0; color: #3c463f; }
+
+/* Status */
+
+.status { padding: 56px 0; }
+
+.status-line {
+  font-family: var(--mono);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 8px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 0 3px rgba(60, 110, 71, 0.18);
+}
+
+.status-sub { color: #62705f; margin: 0; }
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 26px 0 40px;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: #62705f;
+}
+
+@media (max-width: 640px) {
+  .stack-grid { grid-template-columns: 1fr; }
+  .hero { padding: 52px 0 40px; }
+}

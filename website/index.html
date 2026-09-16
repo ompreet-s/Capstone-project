@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signal Station — Static Hosting on AWS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="wrap">
+      <span class="mark">SIGNAL STATION</span>
+      <nav>
+        <a href="#stack">The Stack</a>
+        <a href="#route">Traffic Route</a>
+        <a href="#status">Status</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <p class="kicker">A page served from inside a private cloud</p>
+        <h1>This page reached you through a custom VPC, a public subnet, and one small EC2 instance running Nginx.</h1>
+        <p class="lede">No load balancer, no managed platform — just a hand-built network, a locked-down security group, and a web server doing exactly what it was told.</p>
+        <div class="hero-meta">
+          <div class="meta-item">
+            <span class="num">10.0.0.0/16</span>
+            <span class="label">VPC CIDR block</span>
+          </div>
+          <div class="meta-item">
+            <span class="num">2</span>
+            <span class="label">Public subnets, two AZs</span>
+          </div>
+          <div class="meta-item">
+            <span class="num">80</span>
+            <span class="label">Only port open to the world</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="route" id="route">
+      <div class="wrap">
+        <h2>How a request finds this page</h2>
+        <ol class="path">
+          <li>
+            <span class="step-num">1</span>
+            <div>
+              <h3>Browser → Internet Gateway</h3>
+              <p>Your request enters the VPC through the attached Internet Gateway, the only door between this network and the public internet.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <div>
+              <h3>Route table → public subnet</h3>
+              <p>A route for 0.0.0.0/0 points at the gateway, so the public subnet holding this instance knows how to answer.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <div>
+              <h3>Security group → Nginx</h3>
+              <p>The security group allows inbound HTTP from anywhere and SSH from one address. Nginx answers on port 80 and hands back this file.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="stack" id="stack">
+      <div class="wrap">
+        <h2>What's underneath</h2>
+        <div class="stack-grid">
+          <div class="stack-card">
+            <h3>Network</h3>
+            <p>A custom VPC with two public subnets across separate availability zones, an Internet Gateway, and a route table shared between them.</p>
+          </div>
+          <div class="stack-card">
+            <h3>Identity</h3>
+            <p>An IAM role attached to the instance grants read-only S3 access and CloudWatch agent permissions — nothing more than the box needs.</p>
+          </div>
+          <div class="stack-card">
+            <h3>Storage</h3>
+            <p>A private, versioned S3 bucket holds backups and assets, reachable by the instance role but closed to the public.</p>
+          </div>
+          <div class="stack-card">
+            <h3>Watching</h3>
+            <p>CloudWatch tracks CPU utilization and status checks; an SNS topic emails an alert the moment usage crosses the line.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="status" id="status">
+      <div class="wrap">
+        <h2>Status</h2>
+        <p class="status-line"><span class="dot"></span> Web server online &mdash; served from a public subnet</p>
+        <p class="status-sub">Deployed as part of an AWS static hosting capstone project.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>Built on Amazon VPC, EC2, S3, IAM, CloudWatch, and SNS.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
