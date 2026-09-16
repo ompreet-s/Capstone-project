@@ -4,6 +4,9 @@ A secure, highly available static web application hosted on a custom AWS network
 
 ![Architecture Diagram](docs/architecture-diagram.svg)
 
+#live website
+![live-website](docs/screenshot-01-live-website)
+
 ## Repository layout
 
 ```
